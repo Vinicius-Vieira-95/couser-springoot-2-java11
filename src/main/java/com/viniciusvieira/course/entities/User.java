@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity 
 @Table(name = "tb_user")
 public class User implements Serializable{ //Serializable tem a funcão de transforma os objetos em cadeias de bites
@@ -25,6 +27,7 @@ public class User implements Serializable{ //Serializable tem a funcão de trans
 	private String phone;
 	private String password;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 
@@ -79,7 +82,7 @@ public class User implements Serializable{ //Serializable tem a funcão de trans
 		this.password = password;
 	}
 
-	public List<Order> getList() {
+	public List<Order> getOrders() {
 		return orders;
 	}
 
